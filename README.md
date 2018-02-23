@@ -5,6 +5,9 @@ Source code for 5 substitution &amp; transposition ciphers.
 
 *python3 cipher.py <CIPHER_NAME> \<KEY> <ENC/DEC> <INPUT_FILE> <OUTPUT_FILE>*
 
+
+# Argument Descriptions
+
 <CIPHER_NAME>:
   - PLF: Playfair
   - RTS: Row Transposition
