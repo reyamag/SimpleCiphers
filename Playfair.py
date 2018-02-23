@@ -12,11 +12,19 @@ class Playfair(CipherInterface):
         self.key = key
 
     def encrypt(self, pText):
+        # Perform encryption algorithm here...
+        # ...
+        # ...
+
         cText = "This is the encrypted string"
 
         return cText
 
     def decrypt(self, cText):
+        # Perform decryption algorithm here...
+        # ...
+        # ...
+        
         pText = "This is the decrypted string"
 
         return pText

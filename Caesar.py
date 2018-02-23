@@ -1,6 +1,6 @@
 from CipherInterface import *
 
-class Casar(CipherInterface):
+class Caesar(CipherInterface):
 
     __slots__ = ['key']
 
@@ -12,11 +12,19 @@ class Casar(CipherInterface):
         self.key = key
 
     def encrypt(self, pText):
+        # Perform encryption algorithm here...
+        # ...
+        # ...
+
         cText = "This is the encrypted string"
 
         return cText
 
     def decrypt(self, cText):
+        # Perform decryption algorithm here...
+        # ...
+        # ...
+
         pText = "This is the decrypted string"
 
         return pText

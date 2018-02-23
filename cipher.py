@@ -3,7 +3,7 @@ from RowTransposition import *
 from Railfence import *
 from Vigenere import *
 from Caesar import *
-import sys
+import sys # Used for terminal args..
 
 cipher_name = None
 key = None
@@ -18,19 +18,14 @@ def main():
     # Determine which type of cipher
     if cipher_name == 'PLF':
         cipher = Playfair()
-
     elif cipher_name == 'RTS':
-        print("Row Transposition")
-
+        cipher = RowTransposition()
     elif cipher_name == 'RFC':
-        print("Railfence")
-
+        cipher = Railfence()
     elif cipher_name == 'VIG':
-        print("Vigenere")
-
+        cipher = Vigenere()
     elif cipher_name == 'CES':
-        print("Ceasar")
-
+        cipher = Caesar()
     else:
         print("Not a valid cipher type! Please use:")
         print("\tPLF, RTS, RFC, VIG, or CES")
@@ -39,10 +34,10 @@ def main():
     # Set the key
     cipher.setKey(key)
 
-    # Attempt to read in the text the user wants to encrypt/decrypt
     inFile = None
     outFile = None
     
+    # Attempt to read in the text the user wants to encrypt/decrypt
     try:
         inFile = open(input_file, "r")
     except FileNotFoundError:
@@ -54,27 +49,32 @@ def main():
 
     # Perfrom the encryption/decryption
     if method == "ENC":
+        # Read in the text to encrypt
         plaintext = inFile.read()
+        # Encrypt
         ciphertext = cipher.encrypt(plaintext)
-        print(ciphertext)
+        # Write ciphertext to new file
         outFile.write(ciphertext)
 
     elif method == "DEC":
+        # Read in the text to decrypt
         ciphertext = inFile.read()
-
+        # Decrypt
         plaintext = cipher.decrypt(ciphertext)
+        # Write plaintext to new file
         outFile.write(plaintext)
 
     else:
         print("Incorrect method. Please enter 'ENC' or 'DEC'")
         return
 
-    print("\nThank you for using this program :)")
+    print("\nThank you for using this program.")
 
 
 if __name__ == "__main__":
 
     if len(sys.argv) == 6:
+        # Initialize variables
         cipher_name = sys.argv[1]
         key = sys.argv[2]
         method = sys.argv[3]
