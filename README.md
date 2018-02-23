@@ -3,7 +3,7 @@ Source code for 5 substitution &amp; transposition ciphers.
 
 To run, simply enter into the terminal:
 
-python3 cipher.py <CIPHER_NAME> <KEY> <ENC/DEC> <INPUT_FILE> <OUTPUT_FILE>
+python3 cipher.py <CIPHER_NAME> \<KEY> <ENC/DEC> <INPUT_FILE> <OUTPUT_FILE>
 
 <CIPHER_NAME>:
   - PLF: Playfair
@@ -12,7 +12,7 @@ python3 cipher.py <CIPHER_NAME> <KEY> <ENC/DEC> <INPUT_FILE> <OUTPUT_FILE>
   - VIG: Vigenere
   - CES: Caser
 
-<KEY>:
+\<KEY>:
   - The key that the encryption/decryption algorithm will use
 
 <ENC/DEC>:
