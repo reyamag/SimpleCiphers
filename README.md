@@ -1,10 +1,11 @@
 # SimpleCiphers
 Source code for 5 substitution &amp; transposition ciphers.
 
-**To run, simply enter into the terminal:**
+To run, simply enter into the terminal:
 
-*python3 cipher.py <CIPHER_NAME> \<KEY> <ENC/DEC> <INPUT_FILE> <OUTPUT_FILE>*
+***python3 cipher.py <CIPHER_NAME> \<KEY> <ENC/DEC> <INPUT_FILE> <OUTPUT_FILE>***
 
+*Note: All argments except cipher.py **must** be surrounded by quotes*
 
 # Argument Descriptions
 
@@ -17,6 +18,12 @@ Source code for 5 substitution &amp; transposition ciphers.
 
 \<KEY>:
   - The key that the encryption/decryption algorithm will use
+  - Valid key values:
+    - PLF: Any word or phrase
+    - RTS: An inclusive, non-repeating list of space-separated numbers from 1-***n***, where ***n*** is less than or equal to the length of the cipher/plaintext
+    - RFC: Any integer
+    - VIG: Any word or phrase
+    - CES: Any integer
 
 <ENC/DEC>:
   - To decrypt, or encrypt, respectively
