@@ -26,6 +26,13 @@ def main():
         cipher = Vigenere()
     elif cipher_name == 'CES':
         cipher = Caesar()
+
+        try:
+            shift_amt = int(key)
+        except ValueError:
+            print("Please enter a number as the key for a Caesar cipher!")
+            return
+
     else:
         print("Not a valid cipher type! Please use:")
         print("\tPLF, RTS, RFC, VIG, or CES")

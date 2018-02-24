@@ -9,22 +9,48 @@ class Caesar(CipherInterface):
         pass
 
     def setKey(self, key):
-        self.key = key
+        self.key = int(key)
 
-    def encrypt(self, pText):
-        # Perform encryption algorithm here...
-        # ...
-        # ...
+    def encrypt(self, pText, retainNonAlpha=False):
 
-        cText = "This is the encrypted string"
+        cText = ""
 
+        for letter in pText:
+            if not letter.isalpha():
+                if retainNonAlpha:
+                    cText += letter
+                continue
+            
+            # Determine the ASCII offset based on upper/lowercase
+            ASCIIoffset = ord('A') if letter.isupper() else ord('a')
+            
+            # Get letter ID by factoring out the ASCII offset
+            letterID = ord(letter)-ASCIIoffset
+            # Shift by key value
+            newLetterID = (letterID+self.key) % 26
+            # Get the correct ASCII value by reapplying the offset
+            cText += chr(newLetterID+ASCIIoffset)
+        
         return cText
 
-    def decrypt(self, cText):
-        # Perform decryption algorithm here...
-        # ...
-        # ...
+    def decrypt(self, cText, retainNonAlpha=False):
+        
+        pText = ""
 
-        pText = "This is the decrypted string"
-
+        for letter in cText:
+            if not letter.isalpha():
+                if retainNonAlpha:
+                    pText += letter
+                continue
+            
+            # Determine the ASCII offset based on upper/lowercase
+            ASCIIoffset = ord('A') if letter.isupper() else ord('a')
+            
+            # Get letter ID by factoring out the ASCII offset
+            letterID = ord(letter)-ASCIIoffset
+            # Shift by key value
+            newLetterID = (letterID-self.key) % 26
+            # Get the correct ASCII value by reapplying the offset
+            pText += chr(newLetterID+ASCIIoffset)
+        
         return pText
