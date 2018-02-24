@@ -11,7 +11,7 @@ class Caesar(CipherInterface):
     def setKey(self, key):
         self.key = int(key)
 
-    def encrypt(self, pText, retainNonAlpha=False):
+    def encrypt(self, pText, retainNonAlpha=True):
 
         cText = ""
 
@@ -33,7 +33,7 @@ class Caesar(CipherInterface):
         
         return cText
 
-    def decrypt(self, cText, retainNonAlpha=False):
+    def decrypt(self, cText, retainNonAlpha=True):
         
         pText = ""
 

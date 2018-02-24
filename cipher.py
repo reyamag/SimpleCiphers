@@ -20,19 +20,17 @@ def main():
         cipher = Playfair()
     elif cipher_name == 'RTS':
         cipher = RowTransposition()
-    elif cipher_name == 'RFC':
-        cipher = Railfence()
-    elif cipher_name == 'VIG':
-        cipher = Vigenere()
-    elif cipher_name == 'CES':
-        cipher = Caesar()
-
+    elif cipher_name == 'RFC' or cipher_name == 'CES':
         try:
             shift_amt = int(key)
         except ValueError:
             print("Please enter a number as the key for a Caesar cipher!")
             return
+        
+        cipher = Railfence() if cipher_name == 'RFC' else Caesar()
 
+    elif cipher_name == 'VIG':
+        cipher = Vigenere()
     else:
         print("Not a valid cipher type! Please use:")
         print("\tPLF, RTS, RFC, VIG, or CES")

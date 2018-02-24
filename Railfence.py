@@ -9,22 +9,70 @@ class Railfence(CipherInterface):
         pass
 
     def setKey(self, key):
-        self.key = key
+        self.key = int(key)
 
     def encrypt(self, pText):
-        # Perform encryption algorithm here...
-        # ...
-        # ...
 
-        cText = "This is the encrypted string"
+        cText = ""
+        rail = [[] for _ in range(self.key)]
+        i = 0
+        railIdx = 0
+
+        # Convert the plaintext into fences
+        while i < len(pText):
+
+            # Skip non-alpha characters
+            if not pText[i].isalpha():
+                i += 1
+                continue
+
+            # Reset rail index whenever rail depth is met
+            if railIdx == self.key:
+                railIdx = 0
+            # Add next letter to correct fence in the rail.
+            rail[railIdx].append(pText[i])
+            # Increment indices
+            i += 1
+            railIdx += 1
+        
+        # In order, append each fence to the ciphertext
+        for i in range(0, self.key):
+            cText += ''.join(rail[i])
 
         return cText
 
-    def decrypt(self, cText):
-        # Perform decryption algorithm here...
-        # ...
-        # ...
+    def decrypt(self, cText, retainNonAlpha=True):
         
-        pText = "This is the decrypted string"
+        pText = ""
+        rail = [[] for _ in range(self.key)]
+        i = 0
+        railIdx = 0
+        fenceIdx = 0
+        baseLen = int(len(cText) / self.key) # The base fence length
+        padBy1 = len(cText) % self.key # The number of fences with length+1
+        
+        # Convert the ciphertext into fences
+        while i < len(cText):
+            # Add letter to the right rail.
+            rail[railIdx].append(cText[i])
+            i += 1
+
+            # Keep track of where we are on the fence so we know
+            # when we need to move to the next one.
+            fenceIdx += 1
+            if fenceIdx == baseLen + padBy1:
+                railIdx += 1
+                fenceIdx = 0
+                if padBy1 != 0:
+                    padBy1 -= 1
+
+        # Now that our fences are separated, retrieve the plaintext.
+        counter = 0
+        for j in range(baseLen+1): # The fence index
+            for i in range(self.key): # The rail index
+                if counter == len(cText):
+                    return pText
+                pText += rail[i][j]
+                counter += 1
 
         return pText
