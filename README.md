@@ -1,11 +1,10 @@
 # SimpleCiphers
 Source code for 5 substitution &amp; transposition ciphers.
 
+# Instructions
 To run, simply enter into the terminal:
 
 ***python3 cipher.py <CIPHER_NAME> \<KEY> <ENC/DEC> <INPUT_FILE> <OUTPUT_FILE>***
-
-*Note: All argments except cipher.py **must** be surrounded by quotes*
 
 # Argument Descriptions
 
