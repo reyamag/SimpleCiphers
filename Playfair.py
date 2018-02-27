@@ -105,12 +105,9 @@ class Playfair(CipherInterface):
                 # Otherwise, swap cols
                 newFirst = (first[0], second[1])
                 newSecond = (second[0], first[1])
-            
-            newPair = self.key[newFirst[0]][newFirst[1]]+self.key[newSecond[0]][newSecond[1]]
-            print("Pair:", pair, ":", newPair)
 
             # Update the ciphertext
-            cText += newPair
+            cText += self.key[newFirst[0]][newFirst[1]]+self.key[newSecond[0]][newSecond[1]]
 
             i += 2
 
@@ -152,12 +149,9 @@ class Playfair(CipherInterface):
                 # Otherwise, swap cols
                 newFirst = (first[0], second[1])
                 newSecond = (second[0], first[1])
-            
-            newPair = self.key[newFirst[0]][newFirst[1]]+self.key[newSecond[0]][newSecond[1]]
-            print("Pair:", pair, ":", newPair)
 
             # Update the ciphertext
-            pText += newPair
+            pText += self.key[newFirst[0]][newFirst[1]]+self.key[newSecond[0]][newSecond[1]]
 
             i += 2
 
