@@ -12,7 +12,7 @@ input_file = None
 output_file = None
 
 def main():
-
+    print()
     cipher = None
 
     # Determine which type of cipher
@@ -24,7 +24,7 @@ def main():
         try:
             shift_amt = int(key)
         except ValueError:
-            print("Please enter a number as the key for a Caesar cipher!")
+            print("Please enter a number as the key for a Caesar cipher!\n")
             return
         
         cipher = Railfence() if cipher_name == 'RFC' else Caesar()
@@ -33,11 +33,14 @@ def main():
         cipher = Vigenere()
     else:
         print("Not a valid cipher type! Please use:")
-        print("\tPLF, RTS, RFC, VIG, or CES")
+        print("\tPLF, RTS, RFC, VIG, or CES\n")
         return
     
     # Set the key
-    cipher.setKey(key)
+    if not cipher.setKey(key):
+        # Invalid key :(
+        print()
+        return
 
     inFile = None
     outFile = None
@@ -46,7 +49,7 @@ def main():
     try:
         inFile = open(input_file, "r")
     except FileNotFoundError:
-        print("'", input_file, "' cannot be opened! Try a valid file")
+        print("'", input_file, "' cannot be opened! Try a valid file\n")
         return
 
     # Prepare the output file
@@ -60,6 +63,8 @@ def main():
         ciphertext = cipher.encrypt(plaintext)
         # Write ciphertext to new file
         outFile.write(ciphertext)
+        # Report success
+        print("Encryption successfull!")
 
     elif method == "DEC":
         # Read in the text to decrypt
@@ -68,12 +73,14 @@ def main():
         plaintext = cipher.decrypt(ciphertext)
         # Write plaintext to new file
         outFile.write(plaintext)
+        # Report success
+        print("Decryption successfull!")
 
     else:
-        print("Incorrect method. Please enter 'ENC' or 'DEC'")
+        print("Incorrect method. Please enter 'ENC' or 'DEC'\n")
         return
 
-    print("\nThank you for using this program.")
+    print("Thank you for using this program.\n")
 
 
 if __name__ == "__main__":
