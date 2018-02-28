@@ -14,16 +14,17 @@ class RowTransposition(CipherInterface):
         except ValueError:
             print("Row Transposition cipher key must be a list of numbers!")
             print("\tExample: \"4 5 1 3 2\"")
-            return False
+            return False # Key not valid
 
         # Ensure that key contained a complete list from 1-n
         sorted = list(self.key)
         sorted.sort()
-        for i in range(1, len(sorted)):
-            if i != sorted[i-1]:
-                return False
+        for i in range(0, len(sorted)):
+            if (i+1) != sorted[i]:
+                print("Row Transposition cipher key must be a complete list of numbers from 1-n")
+                return False # Key not valid
 
-        return True
+        return True  # Key initialized successfully
 
     def encrypt(self, pText):
         # Strip non-alpha chars and cast to lower case

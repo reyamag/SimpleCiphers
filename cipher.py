@@ -24,7 +24,7 @@ def main():
         try:
             shift_amt = int(key)
         except ValueError:
-            print("Please enter a number as the key for a Caesar cipher!\n")
+            print("ERR: Please enter a number as the key for a Caesar cipher!\n")
             return
         
         cipher = Railfence() if cipher_name == 'RFC' else Caesar()
@@ -32,14 +32,13 @@ def main():
     elif cipher_name == 'VIG':
         cipher = Vigenere()
     else:
-        print("Not a valid cipher type! Please use:")
+        print("ERR: Not a valid cipher type! Please use:")
         print("\tPLF, RTS, RFC, VIG, or CES\n")
         return
     
     # Set the key
     if not cipher.setKey(key):
-        # Invalid key :(
-        print()
+        print("ERR: Invalid key.\n")
         return
 
     inFile = None
@@ -49,12 +48,11 @@ def main():
     try:
         inFile = open(input_file, "r")
     except FileNotFoundError:
-        print("'", input_file, "' cannot be opened! Try a valid file\n")
+        print("ERR: '", input_file, "' cannot be opened! Try a valid file\n")
         return
 
     # Prepare the output file
     outFile = open(output_file, 'w')
-
     # Perfrom the encryption/decryption
     if method == "ENC":
         # Read in the text to encrypt
@@ -77,7 +75,7 @@ def main():
         print("Decryption successfull!")
 
     else:
-        print("Incorrect method. Please enter 'ENC' or 'DEC'\n")
+        print("ERR: Incorrect method. Please enter 'ENC' or 'DEC'\n")
         return
 
     print("Thank you for using this program.\n")
@@ -95,5 +93,5 @@ if __name__ == "__main__":
 
         main()
     else:
-        print("Incorrect number of arguments")
-        print("See format: \n\tpython3 <CIPHER NAME> <KEY> <ENC/DEC> <INPUTFILE> <OUTPUT FILE>")
+        print("ERR: Incorrect number of arguments")
+        print("See format: \n\t$python3 cipher.py <CIPHER NAME> <KEY> <ENC/DEC> <INPUTFILE> <OUTPUT FILE>")

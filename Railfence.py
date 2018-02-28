@@ -10,9 +10,12 @@ class Railfence(CipherInterface):
 
     def setKey(self, key):
         self.key = int(key)
+        return True  # Key initialized successfully
 
     def encrypt(self, pText):
 
+        # Strip non-alpha chars and cast to lower case
+        pText = ''.join(ch for ch in pText if ch.isalnum()).lower()
         cText = ""
         rail = [[] for _ in range(self.key)]
         i = 0
@@ -21,17 +24,12 @@ class Railfence(CipherInterface):
         # Convert the plaintext into fences
         while i < len(pText):
 
-            # Skip non-alpha characters
-            if not pText[i].isalpha():
-                i += 1
-                continue
-
             # Reset rail index whenever rail depth is met
             if railIdx == self.key:
                 railIdx = 0
             # Add next letter to correct fence in the rail.
             rail[railIdx].append(pText[i])
-            # Increment indices
+            
             i += 1
             railIdx += 1
         
@@ -63,6 +61,7 @@ class Railfence(CipherInterface):
             if fenceIdx == baseLen + padBy1:
                 railIdx += 1
                 fenceIdx = 0
+                # There are a limited number of fences that will be padded by 1.
                 if padBy1 != 0:
                     padBy1 -= 1
 
