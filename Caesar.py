@@ -10,7 +10,7 @@ class Caesar(CipherInterface):
 
     def setKey(self, key):
         self.key = int(key)
-        return True  # Key initialized successfullyc
+        return True  # Key initialized successfully
 
     def encrypt(self, pText, retainNonAlpha=True):
 
@@ -27,8 +27,10 @@ class Caesar(CipherInterface):
             
             # Get letter ID by factoring out the ASCII offset
             letterID = ord(letter)-ASCIIoffset
+            
             # Shift right by key value
             newLetterID = (letterID+self.key) % 26
+            
             # Get the correct ASCII value by reapplying the offset
             cText += chr(newLetterID+ASCIIoffset)
         
