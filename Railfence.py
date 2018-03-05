@@ -27,6 +27,7 @@ class Railfence(CipherInterface):
             # Reset rail index whenever rail depth is met
             if railIdx == self.key:
                 railIdx = 0
+                
             # Add next letter to correct fence in the rail.
             rail[railIdx].append(pText[i])
             

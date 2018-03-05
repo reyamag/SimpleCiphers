@@ -26,9 +26,7 @@ def main():
         except ValueError:
             print("ERR: Please enter a number as the key for a Caesar/Railfence cipher!\n")
             return
-        
         cipher = Railfence() if cipher_name == 'RFC' else Caesar()
-
     elif cipher_name == 'VIG':
         cipher = Vigenere()
     else:
@@ -38,7 +36,7 @@ def main():
     
     # Set the key
     if not cipher.setKey(key):
-        print("ERR: Invalid key.\n")
+        print("ERR: Invalid key, try again.\n")
         return
 
     inFile = None
@@ -53,6 +51,7 @@ def main():
 
     # Prepare the output file
     outFile = open(output_file, 'w')
+    
     # Perfrom the encryption/decryption
     if method == "ENC":
         # Read in the text to encrypt
@@ -62,8 +61,7 @@ def main():
         # Write ciphertext to new file
         outFile.write(ciphertext)
         # Report success
-        print("Encryption successfull!")
-
+        print("Encryption was successfull!")
     elif method == "DEC":
         # Read in the text to decrypt
         ciphertext = inFile.read()
@@ -72,14 +70,12 @@ def main():
         # Write plaintext to new file
         outFile.write(plaintext)
         # Report success
-        print("Decryption successfull!")
-
+        print("Decryption was successfull!")
     else:
         print("ERR: Incorrect method. Please enter 'ENC' or 'DEC'\n")
         return
 
     print("Thank you for using this program.\n")
-
 
 if __name__ == "__main__":
 
@@ -90,8 +86,10 @@ if __name__ == "__main__":
         method = sys.argv[3]
         input_file = sys.argv[4]
         output_file = sys.argv[5]
-
+       
+        # Execute the entire program
         main()
     else:
+        # Error handling the incorrect input data
         print("ERR: Incorrect number of arguments")
         print("See format: \n\t$python3 cipher.py <CIPHER NAME> <KEY> <ENC/DEC> <INPUTFILE> <OUTPUT FILE>")
