@@ -1,6 +1,9 @@
 from CipherInterface import *
+from math import ceil
 
 class Railfence(CipherInterface):
+
+    # TERMINOLOGY: Rail = depth (col), Fence = length (row)
 
     __slots__ = ['key']
 
@@ -41,38 +44,26 @@ class Railfence(CipherInterface):
         return cText
 
     def decrypt(self, cText, retainNonAlpha=True):
-        
-        pText = ""
-        rail = [[] for _ in range(self.key)]
-        i = 0
-        railIdx = 0
-        fenceIdx = 0
-        baseLen = int(len(cText) / self.key) # The base fence length
-        padBy1 = len(cText) % self.key # The number of fences with length+1
-        
-        # Convert the ciphertext into fences
-        while i < len(cText):
-            # Add letter to the right rail.
-            rail[railIdx].append(cText[i])
-            i += 1
 
-            # Keep track of where we are on the fence so we know
-            # when we need to move to the next one.
-            fenceIdx += 1
-            if fenceIdx == baseLen + padBy1:
-                railIdx += 1
-                fenceIdx = 0
-                # There are a limited number of fences that will be padded by 1.
-                if padBy1 != 0:
+        pText = ""
+        
+        numOfRails = ceil(len(cText) / self.key)
+        rails = [[] for _ in range(numOfRails)]
+        padBy1 =len(cText) % self.key
+        i = 0
+
+        while i < len(cText):
+            for railIdx in range(0, numOfRails):
+                if railIdx == numOfRails-1 and padBy1 == 0:
+                    continue
+                
+                rails[railIdx].append(cText[i])
+                i += 1
+
+                if railIdx == numOfRails-1 and padBy1 != 0:
                     padBy1 -= 1
 
-        # Now that our fences are separated, retrieve the plaintext.
-        counter = 0
-        for j in range(baseLen+1): # The fence index
-            for i in range(self.key): # The rail index
-                if counter == len(cText):
-                    return pText
-                pText += rail[i][j]
-                counter += 1
+        for rail in rails:
+            pText += ''.join(rail)
 
         return pText
