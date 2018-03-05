@@ -19,13 +19,13 @@ class Vigenere(CipherInterface):
         pass
 
     def setKey(self, key):
-        self.key = ''.join(ch for ch in key if ch.isalnum()).lower()
+        self.key = ''.join(ch for ch in key if ch.isalpha()).lower()
         return True # Key initialized successfully
 
     def encrypt(self, pText):
         
         self.expandKey(pText)
-        pText = ''.join(ch for ch in pText if ch.isalnum()).lower()
+        pText = ''.join(ch for ch in pText if ch.isalpha()).lower()
         cText = ""
         i = 0
         while i < len(pText):
@@ -39,7 +39,7 @@ class Vigenere(CipherInterface):
     def decrypt(self, cText):
 
         self.expandKey(cText)
-        cText = ''.join(ch for ch in cText if ch.isalnum()).lower()
+        cText = ''.join(ch for ch in cText if ch.isalpha()).lower()
         pText = ""
 
         # Get the row, find which column the ciphertext letter is in,

@@ -13,7 +13,7 @@ class Playfair(CipherInterface):
     def setKey(self, key):
 
         # Strip non-alpha chars and cast to lower case
-        key = ''.join(ch for ch in key if ch.isalnum()).lower()
+        key = ''.join(ch for ch in key if ch.isalpha()).lower()
         alphabet = [chr(i) for i in range(ord('a'), ord('z')+1)]
         keyList = []
 
@@ -50,7 +50,7 @@ class Playfair(CipherInterface):
 
     def encrypt(self, pText):
         
-        pText = ''.join(ch for ch in pText if ch.isalnum()).lower()
+        pText = ''.join(ch for ch in pText if ch.isalpha()).lower()
         pTextPaired = ""
         cText = ""
         

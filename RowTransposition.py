@@ -38,7 +38,7 @@ class RowTransposition(CipherInterface):
                     ascii = ord('x')
 
         # Strip non-alpha chars and cast to lower case
-        pText = ''.join(ch for ch in pText if ch.isalnum()).lower()
+        pText = ''.join(ch for ch in pText if ch.isalpha()).lower()
         cText = ""
         cols = [[] for _ in range(0, len(self.key))]
 
@@ -55,7 +55,7 @@ class RowTransposition(CipherInterface):
     def decrypt(self, cText):
         
         # Strip non-alpha chars and cast to lower case
-        cText = ''.join(ch for ch in cText if ch.isalnum()).lower()
+        cText = ''.join(ch for ch in cText if ch.isalpha()).lower()
         pText = ""
         cols = [[] for _ in range(0, len(self.key))]
         orderedCols = []

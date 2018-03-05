@@ -18,7 +18,7 @@ class Railfence(CipherInterface):
     def encrypt(self, pText):
 
         # Strip non-alpha chars and cast to lower case
-        pText = ''.join(ch for ch in pText if ch.isalnum()).lower()
+        pText = ''.join(ch for ch in pText if ch.isalpha()).lower()
         cText = ""
         rail = [[] for _ in range(self.key)]
         i = 0
