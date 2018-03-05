@@ -24,7 +24,7 @@ def main():
         try:
             shift_amt = int(key)
         except ValueError:
-            print("ERR: Please enter a number as the key for a Caesar cipher!\n")
+            print("ERR: Please enter a number as the key for a Caesar/Railfence cipher!\n")
             return
         
         cipher = Railfence() if cipher_name == 'RFC' else Caesar()
