@@ -1,5 +1,9 @@
 # SimpleCiphers
-Source code for 5 substitution &amp; transposition ciphers.
+Source code for 5 substitution &amp; transposition ciphers written with Python 3.6.
+
+# Authors
+Charles Bucher: charles.abucher@gmail.com <br>
+Reyniel Maglian: rrmaglian@csu.fullerton.edu
 
 # Instructions
 To run, simply enter into the terminal:
