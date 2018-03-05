@@ -49,28 +49,21 @@ def main():
         print("ERR: '", input_file, "' cannot be opened! Try a valid file\n")
         return
 
-    # Prepare the output file
     outFile = open(output_file, 'w')
     
     # Perfrom the encryption/decryption
     if method == "ENC":
-        # Read in the text to encrypt
         plaintext = inFile.read()
-        # Encrypt
         ciphertext = cipher.encrypt(plaintext)
-        # Write ciphertext to new file
         outFile.write(ciphertext)
-        # Report success
         print("Encryption was successfull!")
+
     elif method == "DEC":
-        # Read in the text to decrypt
         ciphertext = inFile.read()
-        # Decrypt
         plaintext = cipher.decrypt(ciphertext)
-        # Write plaintext to new file
         outFile.write(plaintext)
-        # Report success
         print("Decryption was successfull!")
+
     else:
         print("ERR: Incorrect method. Please enter 'ENC' or 'DEC'\n")
         return

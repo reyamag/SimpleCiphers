@@ -27,6 +27,16 @@ class RowTransposition(CipherInterface):
         return True  # Key initialized successfully
 
     def encrypt(self, pText):
+        
+        # Append 'xyz' until the grid is complete
+        if len(pText) % len(self.key) != 0:
+            ascii = ord('x')
+            for _ in range(0, len(self.key) - len(pText) % len(self.key)):
+                pText += chr(ascii)
+                ascii += 1
+                if ascii > ord('z'):
+                    ascii = ord('x')
+
         # Strip non-alpha chars and cast to lower case
         pText = ''.join(ch for ch in pText if ch.isalnum()).lower()
         cText = ""
