@@ -1,8 +1,8 @@
 from Playfair import *
 from RowTransposition import *
-from Railfence import * # DONE
+from Railfence import *
 from Vigenere import *
-from Caesar import * # DONE
+from Caesar import *
 import sys # Used for terminal args..
 
 cipher_name = None
