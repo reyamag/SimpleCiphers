@@ -1,4 +1,4 @@
-# SimpleCiphers
+# Simple Ciphers
 Source code for 5 substitution &amp; transposition ciphers written with Python 3.6.
 
 # Authors
@@ -17,7 +17,7 @@ To run, simply enter into the terminal:
   - RTS: Row Transposition
   - RFC: Railfence
   - VIG: Vigenere
-  - CES: Caser
+  - CES: Caesar
 
 \<KEY>:
   - The key that the encryption/decryption algorithm will use
